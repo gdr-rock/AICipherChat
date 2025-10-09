@@ -91,14 +91,10 @@ Community Discussion:
 
 If you find our paper&tool interesting and useful, please feel free to give us a star and cite us through:
 ```bibtex
-@inproceedings{
-yuan2024cipherchat,
-title={{GPT}-4 Is Too Smart To Be Safe: Stealthy Chat with {LLM}s via Cipher},
-author={Youliang Yuan and Wenxiang Jiao and Wenxuan Wang and Jen-tse Huang and Pinjia He and Shuming Shi and Zhaopeng Tu},
-booktitle={The Twelfth International Conference on Learning Representations},
-year={2024},
-url={https://openreview.net/forum?id=MbfAK4s61A}
+@inproceedings{yuan2024cipherchat,
+  title={GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher},
+  author={Yuan, Youliang and Jiao, Wenxiang and Wang, Wenxuan and Huang, Jen-tse and He, Pinjia and Shi, Shuming and Tu, Zhaopeng},
+  booktitle={The Twelfth International Conference on Learning Representations}
 }
-
 ```
 
