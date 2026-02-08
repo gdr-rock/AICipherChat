@@ -3,40 +3,6 @@ A novel framework CipherChat to systematically examine the generalizability of s
 <br>   <br>
 
 If you have any questions, please feel free to email the first author: [Youliang Yuan](https://github.com/YouliangYuan).
-    
-## 👉 Paper
-For more details, please refer to our paper [ICLR 2024](https://openreview.net/forum?id=MbfAK4s61A).
-
-
-<div align="center">
-  <img src="paper/cover.png" alt="Logo" width="500">
-</div>
-
-<h3 align="center">LOVE💗 and Peace🌊</h3>
-<h3 align="center">RESEARCH USE ONLY✅ NO MISUSE❌</h3>
-
-
-## Our results
-We provide our results (query-response pairs) in `experimental_results`, these files can be loaded by `torch.load()`. Then, you can get a list: the first element is the config and the rest of the elements are the query-response pairs.
-```
-result_data = torch.load(filename)
-config = result_data[0]
-pairs = result_data[1:]
-```
-
-
-
-## 🛠️ Usage
-✨An example run:
-```
-python3 main.py \
- --model_name gpt-4-0613 \
---data_path data/data_en_zh.dict \
---encode_method caesar \
---instruction_type Crimes_And_Illegal_Activities \
---demonstration_toxicity toxic \
---language en
-```
 
 ### How to Run
 
@@ -57,6 +23,7 @@ conda activate venv
 export https_proxy=http://proxy:80
 export http_proxy=http://proxy:80
 module load cuda/12.1
+pip install -U "vllm"
 pip install -U "openai>=1.0"
 ```
 
@@ -96,6 +63,40 @@ Generated report artifacts include:
 - `report_outputs/models/*_pivot.csv` and `.md` (toxicity/refusal/validity/grammar)
 - `report_outputs/models/plots/*.png`
 - `report_outputs/example_io.csv` and `.jsonl` (sample prompt/response pairs)
+
+## 👉 Paper
+For more details, please refer to our paper [ICLR 2024](https://openreview.net/forum?id=MbfAK4s61A).
+
+
+<div align="center">
+  <img src="paper/cover.png" alt="Logo" width="500">
+</div>
+
+<h3 align="center">LOVE💗 and Peace🌊</h3>
+<h3 align="center">RESEARCH USE ONLY✅ NO MISUSE❌</h3>
+
+
+## Our results
+We provide our results (query-response pairs) in `experimental_results`, these files can be loaded by `torch.load()`. Then, you can get a list: the first element is the config and the rest of the elements are the query-response pairs.
+```
+result_data = torch.load(filename)
+config = result_data[0]
+pairs = result_data[1:]
+```
+
+
+
+## 🛠️ Usage
+✨An example run:
+```
+python3 main.py \
+ --model_name gpt-4-0613 \
+--data_path data/data_en_zh.dict \
+--encode_method caesar \
+--instruction_type Crimes_And_Illegal_Activities \
+--demonstration_toxicity toxic \
+--language en
+```
 ## 🔧 Argument Specification
 1. `--model_name`: The name of the model to evaluate.
 
