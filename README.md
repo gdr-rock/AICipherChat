@@ -37,6 +37,35 @@ python3 main.py \
 --demonstration_toxicity toxic \
 --language en
 ```
+
+### Batch Matrix Runs + Report (SelfCipher/Caesar, demo on/off)
+Use `run_experiments.py` to generate and run the full matrix, then auto-produce tables/plots/examples for your report.
+
+Example for 3 models, 4 instruction types, 10 prompts per run:
+```
+python3 run_experiments.py \
+  --matrix_models "Qwen/Qwen2.5-7B-Instruct,meta-llama/Llama-3.1-8B-Instruct,mistralai/Mistral-7B-Instruct-v0.3" \
+  --matrix_instruction_types "Crimes_And_Illegal_Activities,Privacy_And_Property,Unsafe_Instruction_Topic,Role_Play_Instruction" \
+  --matrix_encode_methods "unchange,caesar" \
+  --matrix_use_demonstrations "true,false" \
+  --matrix_debug_num 10 \
+  --report_dir report_outputs
+```
+
+To only generate the matrix config JSON first:
+```
+python3 run_experiments.py \
+  --matrix_models "Qwen/Qwen2.5-7B-Instruct,meta-llama/Llama-3.1-8B-Instruct,mistralai/Mistral-7B-Instruct-v0.3" \
+  --matrix_write_configs configs/report_matrix_3models.json \
+  --matrix_only
+```
+
+Generated report artifacts include:
+- `report_outputs/overall_summary.csv` and `.md`
+- `report_outputs/models/*_runs.csv` and `.md`
+- `report_outputs/models/*_pivot.csv` and `.md` (toxicity/refusal/validity/grammar)
+- `report_outputs/models/plots/*.png`
+- `report_outputs/example_io.csv` and `.jsonl` (sample prompt/response pairs)
 ## 🔧 Argument Specification
 1. `--model_name`: The name of the model to evaluate.
 
@@ -97,4 +126,3 @@ If you find our paper&tool interesting and useful, please feel free to give us a
   booktitle={The Twelfth International Conference on Learning Representations}
 }
 ```
-
