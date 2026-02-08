@@ -38,26 +38,56 @@ python3 main.py \
 --language en
 ```
 
-### Batch Matrix Runs + Report (SelfCipher/Caesar, demo on/off)
-Use `run_experiments.py` to generate and run the full matrix, then auto-produce tables/plots/examples for your report.
+### How to Run
 
-Example for 3 models, 4 instruction types, 10 prompts per run:
+Requirements:
+- `venv`
+- `pip install vllm`
+- `pip install openai`
+
+In `run_experiments.py`, set the models in `--matrix_models` as needed:
+- `Qwen/Qwen2.5-7B-Instruct`
+- `Qwen/Qwen3-14B`
+- `mistralai/Mistral-7B-Instruct-v0.3`
+
+Terminal 1 (serve model with vLLM):
+```bash
+module load python
+conda activate venv
+export https_proxy=http://proxy:80
+export http_proxy=http://proxy:80
+module load cuda/12.1
+pip install -U "openai>=1.0"
 ```
+
+Based on the model in `run_experiments.py`, launch the matching server. Example for Qwen 2.5:
+```bash
+python -m vllm.entrypoints.openai.api_server \
+  --model Qwen/Qwen2.5-7B-Instruct \
+  --dtype float16 \
+  --gpu-memory-utilization 0.85
+```
+
+Terminal 2 (run experiments):
+```bash
+module load python
+conda activate venv
+unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY
+export NO_PROXY="localhost,127.0.0.1"
+export no_proxy="localhost,127.0.0.1"
+
+export OPENAI_API_BASE="http://127.0.0.1:8000/v1"
+export OPENAI_API_KEY="local"
+
+pip install "openai<1.0"
+
 python3 run_experiments.py \
-  --matrix_models "Qwen/Qwen2.5-7B-Instruct,meta-llama/Llama-3.1-8B-Instruct,mistralai/Mistral-7B-Instruct-v0.3" \
+  --matrix_models "Qwen/Qwen2.5-7B-Instruct,Qwen/Qwen3-14B,mistralai/Mistral-7B-Instruct-v0.3" \
   --matrix_instruction_types "Crimes_And_Illegal_Activities,Privacy_And_Property,Unsafe_Instruction_Topic,Role_Play_Instruction" \
   --matrix_encode_methods "unchange,caesar" \
   --matrix_use_demonstrations "true,false" \
   --matrix_debug_num 10 \
   --report_dir report_outputs
-```
-
-To only generate the matrix config JSON first:
-```
-python3 run_experiments.py \
-  --matrix_models "Qwen/Qwen2.5-7B-Instruct,meta-llama/Llama-3.1-8B-Instruct,mistralai/Mistral-7B-Instruct-v0.3" \
-  --matrix_write_configs configs/report_matrix_3models.json \
-  --matrix_only
 ```
 
 Generated report artifacts include:
