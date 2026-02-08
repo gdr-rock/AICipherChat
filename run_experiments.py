@@ -552,7 +552,7 @@ def run_main(cfg, repo_dir):
         "--language",
         cfg["language"],
     ]
-    _append_option(cmd, "--max_tokens", cfg.get("max_tokens", 512))
+    _append_option(cmd, "--max_tokens", cfg.get("max_tokens", 1024))
     _append_option(cmd, "--wait_time", cfg.get("wait_time", 1))
     _append_option(cmd, "--use_system_role", cfg.get("use_system_role", True))
     _append_option(cmd, "--use_demonstrations", cfg.get("use_demonstrations", True))
@@ -623,10 +623,10 @@ def evaluate_saved_results(
     repo_dir,
     use_model_validity=False,
     validity_model=None,
-    validity_max_tokens=64,
+    validity_max_tokens=1024,
     use_model_refusal=False,
     refusal_model=None,
-    refusal_max_tokens=64,
+    refusal_max_tokens=1024,
     examples_per_run=3,
 ):
     data = load_result_data(saved_path)
@@ -1126,10 +1126,10 @@ def main():
     parser.add_argument("--use_model_validity", action="store_true")
     parser.add_argument("--disable_model_validity", action="store_true")
     parser.add_argument("--validity_model_name", type=str, default="")
-    parser.add_argument("--validity_max_tokens", type=int, default=512)
+    parser.add_argument("--validity_max_tokens", type=int, default=1024)
     parser.add_argument("--use_model_refusal", action="store_true")
     parser.add_argument("--refusal_model_name", type=str, default="")
-    parser.add_argument("--refusal_max_tokens", type=int, default=512)
+    parser.add_argument("--refusal_max_tokens", type=int, default=1024)
     parser.add_argument("--examples_per_run", type=int, default=3)
 
     parser.add_argument("--report_dir", type=str, default="report_outputs")
