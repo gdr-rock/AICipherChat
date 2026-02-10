@@ -8,4 +8,6 @@ Qwen2.5-7B,Privacy,0.925,0.225,0.0,1.575
 Qwen2.5-7B,Role-Play,0.825,0.375,0.0,1.975
 Qwen2.5-7B,Unsafe Topic,0.9,0.225,0.05,1.775
 Qwen3-14B,Crimes,0.071,0.7,0.4,4.125
-Qwen3-14B,Privacy,0.25,0.6,0.15,3.333
+Qwen3-14B,Privacy,0.125,0.625,0.175,3.667
+Qwen3-14B,Role-Play,0.385,0.875,0.475,2.883
+Qwen3-14B,Unsafe Topic,0.036,0.7,0.425,3.525
